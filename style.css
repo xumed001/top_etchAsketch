@@ -5,7 +5,8 @@
 */
 
 body {
-    background-color: #D5D5D5;
+    font-family: 'Work Sans', sans-serif;
+    background-color: #c6c6c6;
     /* border: 1px solid red; */
 }
 
@@ -13,7 +14,7 @@ body {
     font-family: 'Work Sans', sans-serif;
     color: #6D7993;
     text-shadow: 1px 1px rgb(147, 147, 147);
-    margin: 2rem;
+    margin: 1rem;
 
     font-size: 4rem;
 }
@@ -29,12 +30,11 @@ body {
     width: 500px;
     display: grid;
     justify-content: center;
-    /* border: 1xp solid red; */
+    /* border: 1px solid red; */
 }
 
 button {
     font-family: 'Work Sans', sans-serif;
-    margin-top: 3rem;
     background-color: #6D7993;
     color: #D5D5D5;
 }
@@ -44,3 +44,21 @@ button:hover {
     color: #96858F;
 }
 
+.userInputs {
+    width: 400px;
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.userInputs2nd {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    /* border: 1px solid red; */
+}
