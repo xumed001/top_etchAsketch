@@ -2,57 +2,42 @@
 const board = document.querySelector('.board')
 const boardSize = document.querySelectorAll('.boardSize')
 const tools = document.querySelectorAll('.tools')
+const reset = document.querySelector('#reset')
 
 //
 const boardColor = '#D5D5D5'
+let color 
+let userInput
 const defaultSize = 16
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function addsHoverEffect() {
-    this.style.backgroundColor = '#96858F'
+function colorSquare() {
+    if (color === 'rainbow') {
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`
+    } else if (color === 'erase') {
+        this.style.backgroundColor = boardColor
+    } else {
+        this.style.backgroundColor = color
+    }
 }
 
-function eraseMode() {
-    this.style.backgroundColor = boardColor
+function changeColor(input) {
+    color = input
 }
-
-function removesHoverEffect() {
-    this.style.backgroundColor = boardColor
-}
-
-
-// function drawDeafultBoard () {
-//     board.style.gridTemplateColumns = 'repeat(16, 1fr)'
-//     board.style.gridTemplateRows = 'repeat(16, 1fr)'
-
-//     for (let i = 0; i < 256; i++) {
-//         let square = document.createElement('div')
-//         square.style.backgroundColor = boardColor
-//         square.style.border = '.1px solid #6D7993'
-
-//         // square.onmouseover = addsHoverEffect
-//         // square.onmouseleave = removesHoverEffect
-
-//         square.onmousedown = eraseMode
-        
-
-//         board.insertAdjacentElement('beforeend', square)
-//     }
-// }
 
 boardSize.forEach((element) => {
     element.addEventListener('click', () => {
-        let userInput = Number(element.id)
-        console.log(userInput)
+        userInput = Number(element.id)
         drawNewBoard(userInput)
     })
 })
 
-tools.forEach((element) => {
-    element.addEventListener('click', () => {
-        let currentTool = element.id
-        console.log(currentTool)
-    })
+reset.addEventListener('click', () => {
+    if (!userInput) {
+        drawNewBoard(defaultSize)
+    } else {
+        drawNewBoard(userInput)
+    }
 })
 
 function drawNewBoard (x) {
@@ -63,13 +48,13 @@ function drawNewBoard (x) {
     board.style.gridTemplateRows = `repeat(${x}, 1fr)`
 
     let totalDivs = x * x
-
+    
     for (let i = 0; i < totalDivs; i++) {
         let square = document.createElement('div')
         square.style.backgroundColor = boardColor
         square.style.border = '.1px solid #6D7993'
-
-        square.onmouseover = addsHoverEffect
+        
+        square.addEventListener('mouseover', colorSquare)
 
         board.insertAdjacentElement('beforeend', square)
     }
