@@ -8,16 +8,19 @@ const reset = document.querySelector('#reset')
 const boardColor = '#D5D5D5'
 let color 
 let userInput
+let clicled = true
 const defaultSize = 16
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function colorSquare() {
-    if (color === 'rainbow') {
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`
-    } else if (color === 'erase') {
-        this.style.backgroundColor = boardColor
-    } else {
-        this.style.backgroundColor = color
+    if (clicled) {
+        if (color === 'rainbow') {
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`
+        } else if (color === 'erase') {
+            this.style.backgroundColor = boardColor
+        } else {
+            this.style.backgroundColor = color
+        }
     }
 }
 
@@ -53,7 +56,7 @@ function drawNewBoard (x) {
         let square = document.createElement('div')
         square.style.backgroundColor = boardColor
         square.style.border = '.1px solid #6D7993'
-        
+
         square.addEventListener('mouseover', colorSquare)
 
         board.insertAdjacentElement('beforeend', square)
@@ -62,5 +65,8 @@ function drawNewBoard (x) {
 
 drawNewBoard(defaultSize)
 
-
+// interaction requires mouse click 
+board.addEventListener('click', () => {
+    clicled = !clicled
+})
 
